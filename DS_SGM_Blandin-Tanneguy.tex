@@ -1,0 +1,93 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage[left=1.5cm, right=1.5cm, top=2cm, bottom=2cm, twoside]{geometry}
+
+\usepackage{esvect}
+\usepackage{siunitx}
+\usepackage{fancybox}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usepackage{braket}
+\usepackage{graphicx}
+\usepackage{mathptmx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{siunitx}
+\usepackage{hyperref}
+
+
+
+\usepackage[french]{babel}
+%Raccourcis de la flemme
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\D}{\, \mbox{d}}
+
+\hypersetup{
+ pdfauthor={Tanneguy Blandin},
+ pdftitle={Devoir maison: Physique du solide},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Me}, 
+ pdflang={French}}
+
+%Définition des numéros d'éxercices
+\newcounter{numExo}
+\newcounter{numQuestion}
+\newcounter{numSubQuestion}
+
+
+\newcommand{\exercice}[1]{%
+  \stepcounter{numExo}%
+  \setcounter{numQuestion}{0}%
+  \setcounter{numSubQuestion}{0}%
+    \noindent
+    \section*{Exercice \Alph{numExo}: #1}
+    \addcontentsline{toc}{section}{\protect\numberline{}Exercice \arabic{numExo}: #1}
+}
+
+%\newcommand{\question}{%
+%  \stepcounter{numQuestion}%
+%  \setcounter{numSubQuestion}{0}%
+ % \par\noindent \textbf{\arabic{numQuestion}.\hspace{2pt}}}
+\newenvironment{question}%
+{%
+\ttfamily %
+  \stepcounter{numQuestion}%
+  \setcounter{numSubQuestion}{0}%
+ \par\noindent \textbf{\arabic{numQuestion}
+}%
+{%
+\normalfont
+}
+
+
+\newcommand{\subquestion}{%
+  \stepcounter{numSubQuestion}%
+  \par{}\hspace{3pt}\textbf{\arabic{numSubQuestion}.\hspace{2pt}}}
+
+
+%%INFO DOC
+\title{Devoir maison \\ Physique des matériaux \\ \large{\textsc{insa} Rennes -- 3 SGM}}
+\date{Mars 2021}
+\author{Tanneguy Blandin}
+
+  
+\begin{document}
+\maketitle
+
+\exercice{}
+
+\question 
+
+
+
+\end{document}
+
+% LocalWords:  Hermitiques Schrödinger Hermitique
