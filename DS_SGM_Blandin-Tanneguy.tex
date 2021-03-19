@@ -264,10 +264,62 @@ vecteurs d'ondes. L'énergie est donc /isotrope/, ce qui nous permet de simplifi
 
 \exercice{Méthode kp}
 
-\Question Nous sommes en présence d'une équation aux valeurs propres qui peut s'écrire sous forme de matrice avec:
+\Question Nous sommes en présence d'une équation aux valeurs propres qui peut s'écrire sous forme de matrice:
+Nous posons:
 
- 
-    
+\[ \hat{H_{kp}} =  \begin{bmatrix} E_G + \frac{\hbar^2 k^2}{2m_0} & Pk \\ Pk & \frac{\hbar^2 k^2}{2 m_0} \end{bmatrix} \qquad \ket{u_{n,k}} = \begin{bmatrix} C_1 \\ C_2 \end{bmatrix} \]
+
+Nous avons alors l'équation suivante, avec $E$ un scalaire:
+\begin{equation}\label{equ:evp_matrices}
+  \hat{H} \ket{u_{n,k}} = E \ket{u_{n,k}} \quad \Leftrightarrow \quad \begin{bmatrix} E_G + \frac{\hbar^2 k^2}{2m_0} & Pk \\ Pk & \frac{\hbar^2 k^2}{2 m_0} \end{bmatrix} \times \begin{bmatrix} C_1 \\ C_2 \end{bmatrix} = E \begin{bmatrix} C_1 \\ C_2 \end{bmatrix}
+\end{equation}
+
+Nous pouvons réécrire cette relation sous la forme $\left(\hat{H}-EI_2\right)\ket{u_{n,k}}=0$, or pour avoir une solution non-dégénérée à cette équation,
+il faut trouver une énergie $E$ telle que l'image de la matrice $\hat{H}-EI_2$ soit de 0, donc il faut en trouver un déterminant nul.
+\begin{equation}\label{equ:determinant}
+  \begin{vmatrix} E_G + \frac{\hbar^2 k^2}{2m_0} - E & Pk \\
+    Pk & \frac{\hbar^2 k^2}{2 m_0} - E
+  \end{vmatrix} = 0
+  \quad \Leftrightarrow E^2-E\left(E_G + 2\left(\frac{\hbar^2 k^2}{2m_0}\right)\right) + \left(\frac{\hbar^2 k^2}{2m_0}\right)^2 + E_G \frac{\hbar^2k^2}{2m_0} - P^2 k^2 = 0
+\end{equation}
+
+Nous calculons dans un premier temps le déterminant de ce plynôme du second degré en $E$, nous posons: $P^2k^2 = E_P \frac{\hbar^2 k^2}{2 m_0}$
+\begin{align*}
+  \Delta &= \left( E_G + 2\left(\frac{\hbar^2 k^2}{2m_0}\right)\right)^2 -4\left(\frac{\hbar^2k^2}{2m_0}\right)^2 - 4E_G \frac{\hbar^2 k^2}{2m_0} + 4E_P\frac{\hbar^2 k^2}{2m_0} \\
+  \Delta &= E_G^2 +4E_P \frac{\hbar^2 k^2}{2m_0} \\
+\end{align*}
+
+Nous pouvons donc maintenant utiliser l'équation de résolution des polynomes du second degré:
+\begin{equation}\label{equ:jaioublie}
+  E_{c,v} = \frac{E_G}{2} + \frac{\hbar^2 k^2}{2m_0} \pm \frac{1}{2}\sqrt{E_G^2 + E_P \frac{\hbar^2k^2}{2 m_0}}
+  \end{equation}
+
+Les énergies $E_G$ et $E_P$ sont positives, tout comme le vecteur d'onde et la masse, la racine carrée présente dans l'équation~\ref{equ:jaioublie} est donc réelle, ce qui correspond à la réalite.
+De plus, l'énergie de plus haut niveau semble correspondre à la bande de conduction et l'énergie la plus faible à la bande de valence, nous pouvons donc identifier les relations suivantes:
+\begin{align}\label{equ:dispertion1}
+  E_c &= \frac{E_G}{2} + \frac{\hbar^2 k^2}{2m_0} + \frac{E_G}{2}\sqrt{1 +4 \frac{E_P}{{E_G}^2} \frac{\hbar^2k^2}{2 m_0}}\\ \label{equ:dispertion2}
+  E_v &= \frac{E_G}{2} + \frac{\hbar^2 k^2}{2m_0} - \frac{E_G}{2}\sqrt{1 +4 \frac{E_P}{{E_G}^2} \frac{\hbar^2k^2}{2 m_0}}
+\end{align}
+
+\Question Nous pouvons vérifier la validité de notre hypothèse précédente sur l'identité des bandes par un développement limité.
+Une bande qui présente une courbure positive est une bande de valence là où une bande qui présente une courbure positive est une bande de conduction.
+
+L'objectif premier de notre développement limité est d'éliminer la racine carrée dans les équations~\ref{equ:dispertion1}~et~\ref{equ:dispertion2}. Nous avons donc besoin
+d'hypothèses sur les éléments présents dans cette racine. Nous supposons que $\frac{\hbar^2k^2}{2m_0} \ll \frac{E_G^2}{E_P}$ Donc nous avons $\frac{E_P}{E_G^2}\frac{\hbar^2k^2}{2m_0} \ll 1$ . Nous pouvons alors réaliser l'approximation suivante:
+\begin{equation}\label{approximation}
+  \sqrt{1+4\frac{E_P}{E_G^2} \frac{\hbar^2 k^2}{2 m_0}} \approx 1 + 2\frac{E_P}{E_G^2} \frac{\hbar^2 k^2}{2 m_0}
+\end{equation}
+
+En injectant la relation~\ref{approximation} dans les équations~\ref{equ:dispertion1}~et~\ref{equ:dispertion2}, nous obtenons de nouvelles expressions pour l'expression des énergies de conduction et de valence:
+\begin{align}\label{equ:bande-intermédiaire1}
+  E_c  &= E_G + \frac{\hbar^2 k^2}{2 m_0} \left(1+\frac{E_P}{E_G}\right) \\\label{equ:bande-intermédiaire2}
+  E_v  &= \\ \mbox{TO BE CONTINUED}
+\end{align}
+
+
+
+  
+
 
 
 

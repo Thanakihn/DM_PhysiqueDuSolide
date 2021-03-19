@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Arch Linux) (preloaded format=xelatex 2021.3.3)  19 MAR 2021 13:45
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/Arch Linux) (preloaded format=xelatex 2021.3.11)  19 MAR 2021 20:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1377,18 +1377,24 @@ mcm/m/n/12 0)$
 
 [1
 
-] [2] [3] (./DS_SGM_Blandin-Tanneguy.aux)
+] [2] [3]
+Overfull \hbox (11.26103pt too wide) in paragraph at lines 307--309
+[]\T1/ptm/m/n/12 L'objectif pre-mier de notre dé-ve-lop-pe-ment li-mité est d'é
+li-mi-ner la ra-cine car-rée dans les équa-tions []11[] et []12[].
+ []
+
+[4] (./DS_SGM_Blandin-Tanneguy.aux)
 Package rerunfilecheck Info: File `DS_SGM_Blandin-Tanneguy.out' has not changed
 .
 (rerunfilecheck)             Checksum: 13A55E81EB4B8C4A45692CFF6DE2EDEF;508.
  ) 
 Here is how much of TeX's memory you used:
- 38542 strings out of 477299
- 856424 string characters out of 5838339
- 1336519 words of memory out of 5000000
- 57485 multiletter control sequences out of 15000+600000
+ 38550 strings out of 477299
+ 856575 string characters out of 5838338
+ 1340979 words of memory out of 5000000
+ 57493 multiletter control sequences out of 15000+600000
  456384 words of font info for 120 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,20n,98p,739b,854s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on DS_SGM_Blandin-Tanneguy.pdf (3 pages).
+Output written on DS_SGM_Blandin-Tanneguy.pdf (4 pages).
