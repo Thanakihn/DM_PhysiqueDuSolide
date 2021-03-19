@@ -218,22 +218,61 @@ Nous pouvons représenter l'évaluation de l'énergie en fonction de la position
     %% M->Gamma
     \def\EMG{x RadtoDeg cos -2 mul 2.5 add}
     \psplot{-3.141592}{0}{\EMG}
-    \uput[d](-3,0){$M$}
+%    \uput[d](-3,0){$M$}
     %% Gamma -> X
     \def\Delta{x RadtoDeg cos 1.5 sub neg}
     \psplot{0}{3.141519}{\Delta}
-    \uput[d](0,0){$\Gamma$}
+%    \uput[d](0,0){$\Gamma$}
     %% X -> M
     \def\EXM{x 3.141519 sub RadtoDeg cos -1 mul 3.5 add}
     \psplot{3.141519}{6.28318}{\EXM}
-    \uput[d](3.141592,0){$X$}
-    \uput[d](6.28318,0){$M$}
+%    \uput[d](3.141592,0){$X$}
+%    \uput[d](6.28318,0){$M$}
+%    \rput(2,2){test}
+    
   \end{pspicture}
-
+  \caption{Relation de dispertion}
+  \label{fig:equdedispertion}
 \end{figure}
+
+\Question Nous pouvons maintenant exprimmer l'énergie dans un voisinage de $\Gamma$ grâce à un développement limité:
+\begin{equation}\label{equ:DL}
+\mbox{pour $k$ proche de $(0,0)$}\qquad E(k_x,k_y) = \alpha -4\gamma + 4a^2\gamma \left( {k_x}^2 + {k_y}^2 \right)
+\end{equation}
+
+Cette équation nous permet de définir la forme des lignes iso-énergie en fonction des directions des vecteurs
+d'ondes. Puisque nous considérons des lignes iso-énergie, nous posons $E(k_x,k_y)=E_1$.
+
+Nous avons alors la relation suivante:
+\begin{equation}\label{equ:isoenergie}
+  {k_x}^2 + {k_y}^2=\frac{E_1+4\gamma - \alpha}{4a^2\gamma}
+\end{equation}
+Cette relation correspond à l'équation d'un cercle, les lignes d'iso-énergie sont donc des cercles dans le domaines de
+vecteurs d'ondes. L'énergie est donc /isotrope/, ce qui nous permet de simplifier l'équation~\ref{equ:DL} en posant $k$ comme la distance entre le point que l'on considère et le centre de la maille ($k=\sqrt{k_x^2+k_y^2}$):
+\begin{equation}\label{equ:Energie}
+  E(k)=\alpha-4\gamma+4a^2\gamma k^2
+\end{equation}
+
+
+\Question À partir de la relation~\ref{equ:Energie}, nous pouvons calculer la masse effective des électrons au voisinage de $\Gamma$.
+\begin{align*}
+  m^* = \frac{\hbar^2}{\frac{\partial^2 E}{\partial k^2}} \\
+    m^* = \frac{\hbar^2}{8a^2\gamma}\\
+    m^* = {\mbox{application numérique}}\\
+\end{align*}
+
+
+\exercice{Méthode kp}
+
+\Question Nous sommes en présence d'une équation aux valeurs propres qui peut s'écrire sous forme de matrice avec:
+
+ 
+    
+
+
 
 
 
 \end{document}
 
-% LocalWords:  Hermitiques Schrödinger Hermitique
+% LocalWords:  Hermitiques Schrödinger Hermitique iso-énergie
