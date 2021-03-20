@@ -313,11 +313,75 @@ d'hypothèses sur les éléments présents dans cette racine. Nous supposons que
 En injectant la relation~\ref{approximation} dans les équations~\ref{equ:dispertion1}~et~\ref{equ:dispertion2}, nous obtenons de nouvelles expressions pour l'expression des énergies de conduction et de valence:
 \begin{align}\label{equ:bande-intermédiaire1}
   E_c  &= E_G + \frac{\hbar^2 k^2}{2 m_0} \left(1+\frac{E_P}{E_G}\right) \\\label{equ:bande-intermédiaire2}
-  E_v  &= \\ \mbox{TO BE CONTINUED}
+  E_v  &= \frac{\hbar^2 k^2}{2m_0} \left( 1-\frac{E_P}{E_G}\right)
 \end{align}
 
+Nous pouvons maintenant déterminer les courbure de chaque bande en calculant la dérivée seconde par rapport au vecteur d'onde $k$:
+\begin{align} \label{equ:courbureC}
+  \frac{\partial^2 E_c}{ \partial k^2} = \frac{\hbar}{m_0}\left( 1+\frac{E_P}{E_G}\right) \\\label{equ:courbureV}
+  \frac{\partial^2 E_v}{ \partial k^2} = \frac{\hbar}{m_0}\left( 1- \frac{E_P}{E_G}\right)
+\end{align}
+
+Si nous considérons l'équation~\ref{equ:courbureC}, nous constatons que la courbure de la bande de conduction est bien positive.
+Le signe de la courbure de la bande de valence est lui défini par le rapport $E_P/E_G$ dans l'équation~\ref{equ:courbureV}. Cette courbure est négative
+si et seulement si $E_P>E_G$. Or on nous donne plus loin $E_P = \SI{16,0}{\eV}$ et $E_G\in [0,235;1,424]\si{\eV}$ donc nous vérifions cette hypothèse.
+
+\Question En utilisant la notation de la masse effective, nous avons vu dans le cours que l'équation de dispersion de la bande de conduction pouvait s'écrire de la manière suivante:
+\begin{equation}\label{equ:thEquDispertion}
+  E(k) = E_G +\frac{k^2 \hbar^2}{2 m_e^*}
+\end{equation}
+
+\Question En prenant les équations~\ref{equ:bande-intermédiaire1}~et~\ref{equ:thEquDispertion}, nous pouvons identifier la masse effective:
+\begin{equation}\label{equ:me}
+  m_e^* =\frac{m_0}{1+\frac{E_P}{E_G}}
+\end{equation}
+
+\begin{table}[htb]
+  \begin{equation*}
+    \begin{array}{|c||c|c|c|c|c|}
+      \hline
+      \mbox{Paramètre} & E_G\ (\si{\eV}) & \Delta_{so}\ (\si{\eV}) & m_{hh}^* \ (m_0) & m_{lh}^* \ (m_0) & m_{so}^* \ (m_0) \\\hline
+      \mbox{InSb}      & \num{0,235}     &  \num{0,81}            & \num{0,38}      & \num{0,015}     & \num{0,011}     \\\hline
+      \mbox{InAs}      & \num{0,417}     &  \num{0,39}            & \num{0,41}      & \num{0,027}     & \num{0,014}     \\\hline
+      \mbox{InP}       & \num{1,424}     &  \num{0,108}           & \num{0,78}      & \num{0,11}      & \num{0,021}     \\\hline
+    \end{array}
+  \end{equation*}
+  \caption{Paramètres de structure de bande pour InSb, InAs et InP}
+  \label{tab:donnes}
+\end{table}
+
+\Question À partir des données du tableau~\ref{tab:donnes}, et en prenant $E_P=\SI{16,0}{\eV}$, nous pouvons calculer les masses effectives de trois semi-conducteurs à gap direct en utilisant la formule~\ref{equ:me}:
+\begin{description} 
+\item{InSb} $m_{e\ InSb}^* = \num{0,0145}\ m_0 = \SI{1,318e-32}{\kilogram}$
+\item{InAs} $m_{e\ InAs}^* = \num{0,0254}\ m_0 = \SI{2,314e-32}{\kilogram}$
+\item{InP} $m_{e\ InP}^* = \num{0,0817}\ m_0 = \SI{7,445e-32}{\kilogram}$
+\end{description}
+
+Le tableau~\ref{tab:donnes} ne nous permet pas de comparer nos résultats avec des mesures expérimentales.
 
 
+\Question SCHEMA
+
+
+
+\Question Si nous considérons l'expression de $E_v$ de l'équation~\ref{equ:bande-intermédiaire2}, nous pouvons la comparer à une relation de dispertion isotrope parabolique de bande de valence pour les trous lourds ($hh$ pour \emph{heavy hole}) et les trous légers ($lh$ our \emph{light holes}):
+\begin{equation}\label{equ:thDispertionValence}
+  E_{v\ th} = -\frac{k^2 \hbar^2}{2 m_h^*} \qquad mbox{avec }m_h^* =\left\{\begin{matrix} m_{hh}^* \\ m_{lh}^*\end{matrix}\right.
+\end{equation}
+
+Par identification, nous obtenons une nouvelle équation pour les masses équivalentes des trous:
+\begin{equation}\label{equ:met}
+  m_h^* = \frac{m_0}{\frac{E_P}{E_G} -1}
+\end{equation}
+
+Nous pouvons alors appliquer les données du tableau~\ref{tab:donnes}:
+\begin{description}
+\item{InSb} $m_{h\ InSb}^* = \num{0,0149}\ m_0 = \SI{1,36e-32}{\kilogram}$. Ce résultat correspond, à l'approximation du nombre de chiffres significatifs près à la masse relative du trou léger pour ce semi-conducteur. 
+\item{InAs} $m_{h\ InAs}^* = \num{0,0267}\ m_0 = \SI{2,44e-32}{\kilogram}$. Encore une fois, ce résultat correspond à un trou léger
+\item{InP} $m_{h\ InP}^* = \num{0,097}\ m_0 = \SI{8,90e-32}{\kilogram}$. Ce calcul s'éloigne légèrement des données du tableau~\ref{tab:donnes} pour un trou léger, nous notons un écart absolu de 12\%. Cependant ce résultat ne correspond pas à la mesure d'un trou lourd pour autant avec un écart absolu de 88\%.
+\end{description}
+
+\Question Nous pouvons conclure de nos résultats que c'est la bande des \emph{trous légers} qui est correctement représentée par cette méthode. Cependant, l'écart avec le dernier semi-conducteur (InP) nous mène à croire que cette méthode fonctionne uniquement pour des énergies de gap suffisamment petites. Nous pouvons lier cet écart à l'hypothèse que nous avons posé:$\frac{\hbar^2k^2}{2m_0} \ll \frac{E_G^2}{E_P}$, cette hypothèse est levée pour de grandes énergies de gap.  
   
 
 
