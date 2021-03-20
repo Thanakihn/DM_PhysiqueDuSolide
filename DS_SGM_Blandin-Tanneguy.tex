@@ -15,7 +15,9 @@
 
 \usepackage{braket}
 \usepackage{graphicx}
-\usepackage{mathptmx}
+%\usepackage{mathptmx}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
 %\usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{siunitx}
@@ -80,7 +82,7 @@
  \par\noindent \textbf{\arabic{numQuestion}}
 }%
 {%
-\normalfont
+\normalfont\par
 }
 
 \newenvironment{info}%
@@ -93,7 +95,7 @@
 
 \newcommand{\subquestion}{%
   \stepcounter{numSubQuestion}%
-  \par{}\hspace{3pt}\textbf{\arabic{numSubQuestion}.\hspace{2pt}}}
+  \par{}\hspace{3pt}\textbf{\alph{numSubQuestion}.\hspace{2pt}}}
 
 
 %%INFO DOC
@@ -121,41 +123,129 @@
   Donner les coordonnées des vecteurs $(\vv{a},\vv{b})$ qui définissent une maille primitive de ce réseau dans le repère $Oxy$ orthonormé, en fonction de $a_0$.
 \end{question}
 
-La maille est une maille carrée, les vecteurs de la maille élémentaire de ce réseau sont $\vv{a}=(3a_0,0)$ et $\vv{b}=(0,3a_0)$. Cependant, la maille primitive
-ne doit être consitué aue d'un unique noeud du réseau. AHHH
+La maille est une maille carrée, les vecteurs de la maille élémentaire de ce réseau sont $\vv{a}=(3a_0,0)$ et $\vv{b}=(0,3a_0)$.
+
+Nous n'avons pas trouvé de maille primitive qui nous permette de paver le plan et qui contienne un noeud à chaque sommet et aucun noeud à l'intérieur de sa surface. Nous pouvons cependant construire plusieurs mailles unitaires si nous omettons ces contraintes:
+\begin{itemize}
+\item Une maille triangulaire rectangle isocèle de hauteur $\frac{3a_0}{2}$, qui correspond à la première zone de Brillouin de ce réseau.
+\item Une maille carrée de côté $\frac{3a_0}{2}$.
+\end{itemize}
+Ces mailles sont présentées dans la figure~\ref{fig:mailles}.
+
 
 \begin{question}
   Préciser la nature du réseau direct et son paramètre de maille $a$
 \end{question}
 
 
+Le réseau direct est un réseau carré primitif composé de 4 atomes, son paramètre de maille $a=3a_0$.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=8cm]{./pictures/mailles.png}
+  \caption{Différentes mailles présentes dans le cristal}
+  \label{fig:mailles}
+\end{figure}
+
+
+
 
 \begin{question}
   Préciser le motif associé à ce cristal : nombre d'atomes et position en fonction des vecteurs $\vv{a}$ et $\vv{b}$
 \end{question}
+Ce cristal présente un motif carré primitif contenant 4 atomes.
+\begin{itemize}
+\item (0,0) l'origine de la maille
+\item (0,1/3)
+\item (1/3,2/3)
+\item (2/3,2/3)
+\end{itemize}
+
+  
 
 
 \begin{question}
   Calculer l'aire de la maille unitaire, en fonction de $a_0$
 \end{question}
+L'aire de la maille unitaire est égale à celle de la maille élémentaire divisée par le nombre d'atomes dans cette dernière:
+\begin{equation}\label{equ:SmailleU}
+  A= \frac{a^2}{4} = {a_0}^2 \frac{9}{4}
+\end{equation}
+
+Nous retrouvons bien ce résultat avec les deux mailles unitaires que nous avions définis à la première question.
 
 \begin{question}
-  Calculer le nombre d'atomes par unité de surface. Application numérique en \si{\squared\meter}.
-  \end{question}
+  Calculer le nombre d'atomes par unité de surface. Application numérique en \si{\per\square\meter}.
+\end{question}
+
+Le nombre d'atomes par unité de surface est simplement l'inverse de la surface de la maille unitaire puisque cette dernière décrit la surface occupée par un atome, nous avons donc:
+\[ \rho_a = \frac{4}{9{a_0}^2} = \SI{1,11e19}{\per\square\meter}\]
 
 \begin{question}
   Exprimer les coordonnées des vecteurs du réseau réciproque $(\vv{a*}, \vv{b*})$, en fonction de $a_0$ dans le repère $Oxy$
 \end{question}
 
+Nous pouvons exprimer le réseau réciproque élémentaire, en posant $\delta_{i,j}$ l'opérateur de Kronecker, à partir de la relation suivantes:
+\begin{equation}\label{equ:thRR}
+  \vv{\imath}\cdot\vv{\jmath}^* = 2\pi\delta_{i,j}
+\end{equation}
+
+Si nous posons $\vv{a^*}=(\alpha,\beta)$ et $\vv{b*}=(\gamma,\eta)$, nous avons les relations suivantes:
+\begin{align*}
+  \vv{a^*}\cdot\vv{a}=2\pi \quad \Rightarrow \quad 3a_0\cdot \alpha = 2\pi \\
+   \vv{a^*}\cdot\vv{b}=0 \quad \Rightarrow \quad 3a_0\cdot \beta = 0 \\
+ \vv{b^*}\cdot\vv{b}=2\pi \quad \Rightarrow \quad 3a_0\cdot \eta = 2\pi \\
+ \vv{b^*}\cdot\vv{a}=0 \quad \Rightarrow \quad 3a_0\cdot \gamma = 0 
+\end{align*}
+Un fois le système résolu, nous obtenons le réseau réciproque élémentaire de notre maille:
+\begin{equation}\label{equ:RR}
+  \vv{a^*} = \left(\frac{2\pi}{3 a_0},0\right) \qquad \vv{b^*} = \left(0,\frac{2\pi}{3a_0 }\right)
+\end{equation}
+
+
 
 \begin{question}
   Dessiner le réseau réciproque et le première zone de Brillouin
 \end{question}
+
+Pour la suite de l'exercice, nous négligeons complètement le fait que nous avons 4 atomes dans la maille, ce n'est pas un manque volonté, c'est simplement que l'auteur n'a pas
+réussi à trouver une maille élémentaire satisfaisante afin de réaliser ces calculs. Nous avions supposé que nous pouvions réinsérer les noeuds de notre maille élémentaire dans
+notre réseau réciproque en utilisant les résultats de la question~3. Cependant, en faisant ainsi, nous trouvons une première zone de Brillouin triangulaire rectangle ce qui nous empêche de résoudre la suite de l'exercice.
+
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=9cm]{./pictures/1ZB.png}
+  \caption{Réseau réciproque et première zone de Brillouin}
+  \label{fig:RR}
+\end{figure}
+
 \begin{question}
-  Dans la première zone de Brillouin, placer les points $\Gamma$ ,$X$ de coordonnées $(\pi/a,0)$ et $M$ de coordonnées $(\pi/a,\pi/a)$.
-  \end{question}
+  Dans la première zone de Brillouin, placer les points $\Gamma$ ,$X$ de coordonnées $(\frac{\pi}{a},0)$ et $M$ de coordonnées $(\frac{\pi}{a},\frac{\pi}{a})$.
+\end{question}
+
+\Question Si nous considérons maintenant une fonction de Bloch $\Psi_{c,k}$
+\subquestion Les valeurs de $\vv{k}$ possibles dans la première zone de Brillouin sont les valeurs $\vv{k}=\frac{2\pi n}{L}$.
+Ce résultat est obtenu quand nous considérons les conditions aux limites de la fonction de Bloch, nous considérons la limite sur la direction $\vv{x}$ mais la considération est identique pour la direction $\vv{y}$
+
+\begin{align*}
+  \Psi(x+L)& = \Psi(x) \quad \mbox{or} \quad \Psi(x)=u(x)e^{jk_x x} \\
+  u(x+aN)e^{jk_x(x+Na)} &= u(x)e^{jk_xx} \quad   \mbox{avec}\quad u(x+a)=u(x)\\
+  e^{jkNa} &= 1 \\
+  k_xNa &= 2\pi n \quad n\in \mathbb{Z}
+\end{align*}
 
 
+\subquestion Nous pouvons ensuite calculer la densité d'états en vecteur d'onde. C'est l'inverse de l'espace occupé par un état, sachant qu'il y a deux états par vecteur d'onde, un pour les spin up et un pour les spin down.
+\begin{equation}
+  \rho_k = \frac{2 (Na)^2}{4\pi^2} = \frac{S}{2\pi^2}
+\end{equation}
+
+ \subquestion Pour déterminer le nombre d'états atomiques disponibles dans la première zone de Brillouin, il nous suffit de multiplier la densité d'états en vecteur d'onde avec la surface en vecteur d'ondes de la 1ere zone de Brillouin.
+ \begin{equation}
+   N_e = \rho_k*A_{1ZB} = \frac{(N a)^2}{2 \pi^2} \left(\frac{2\pi}{a}\right)^2 = 2N^2
+ \end{equation}
+ Le nombre d'états électronique est proportionnel au carré du nombre de répétitions de mailles dans une direction.
 
 
 \partexo{Bandes d'énergie}
@@ -174,36 +264,36 @@ ne doit être consitué aue d'un unique noeud du réseau. AHHH
 \item En $M$ ($\vv{k}= (\pi/a,\pi/a)$), nous avons: $E_{cM} = \alpha + 4\gamma = \SI{4,5}{\eV}$.
 \end{itemize}
 
-\Question En déterminant la ou les composantes de $\vv{k}$ qui varie ou varient en fonction de la direction dans laquelle nous nous déplaçons dans le cristal, nous pouvons réécire la fonction $\vv{k}$ pour chaque direction:
+\Question En déterminant la ou les composantes de $\vv{k}$ qui varie ou varient en fonction de la direction dans laquelle nous nous déplaçons dans le cristal, nous pouvons réécrire la fonction $\vv{k}$ pour chaque direction:
 \begin{itemize}
 \item Sur la direction $\Gamma X$ ou $\Delta$, nous pouvons définir $\vv{k}$ en fonction de $x$ de la manière suivante:
   \begin{align*}
-    [0,\frac{\pi}{a}] & \rightarrow [0,\frac{\pi}{a}]^2\\
+    \left[0,\frac{\pi}{a}\right] & \rightarrow \left[0,\frac{\pi}{a}\right]^2\\
     x                 & \mapsto    \vv{k} = (x,0) \\
   \end{align*}
   Nous pouvons donc définir la variation de l'énergie dans cette direction:
   \begin{equation}\label{equ:Delta}
-    x\in[0,\frac{pi}{a}] \quad E_{c\Delta} = \alpha - 2\gamma\left(1+\cos(ax)\right)
+    x\in\left[0,\frac{pi}{a}\right] \qquad E_{c\Delta} = \alpha - 2\gamma\left(1+\cos(ax)\right)
   \end{equation}
 
-\item Sur la direction $\Gamma M$, nous pouvons définir $\vv{k}$ en fonction de $x$x de la manière suivante:
+\item Sur la direction $\Gamma M$, nous pouvons définir $\vv{k}$ en fonction de $x$ de manière analogue:
   \begin{align*}
-    [0,\frac{\pi}{a}] & \rightarrow [0,\frac{\pi}{a}]^2\\
+    \left[0,\frac{\pi}{a}\right] & \rightarrow \left[0,\frac{\pi}{a}\right]^2\\
     x                 & \mapsto    \vv{k} = (x,x) \\
   \end{align*}
   Nous pouvons donc définir la variation de l'énergie dans cette direction:
   \begin{equation}\label{equ:GammaX}
-    x\in[0,\frac{pi}{a}] \quad E_{c\ \Gamma X} = \alpha - 4\gamma\cos(ax)
+    x\in\left[0,\frac{pi}{a}\right] \quad E_{c\ \Gamma X} = \alpha - 4\gamma\cos(ax)
   \end{equation}
 
 \item Sur la direction $XM$, nous pouvons aussi définir $\vv{k}$ en fonction de $x$:
   \begin{align*}
-    [0,\frac{\pi}{a}] & \rightarrow [0,\frac{\pi}{a}]^2\\
+    \left[0,\frac{\pi}{a}\right] & \rightarrow \left[0,\frac{\pi}{a}\right]^2\\
     x                 & \mapsto    \vv{k} = (\frac{\pi}{a},x) \\
   \end{align*}
   Nous pouvons donc définir la variation de l'énergie dans cette direction:
   \begin{equation}\label{equ:XM}
-    x\in[0,\frac{pi}{a}] \quad E_{c\ XM} = \alpha - 2\gamma(\cos(ax)-1)
+    x\in\left[0,\frac{pi}{a}\right] \quad E_{c\ XM} = \alpha - 2\gamma(\cos(ax)-1)
   \end{equation}
 \end{itemize}
 
@@ -212,32 +302,33 @@ Nous pouvons représenter l'évaluation de l'énergie en fonction de la position
 
 \begin{figure}[htb]
   \centering
-  \begin{pspicture}(-4,-1)(7.14,5)
-    \psline[showpoints=true, dotstyle=pentagon*](-3.14159,0)(0,0)(3.14159,0)(6.283185,0)
-    \psline[showpoints=true, dotstyle=pentagon*]{->}(0,0)(0,1)(0,2)(0,3)(0,4)(0,5)
-    %% M->Gamma
-    \def\EMG{x RadtoDeg cos -2 mul 2.5 add}
-    \psplot{-3.141592}{0}{\EMG}
+%  \begin{pspicture}(-4,-1)(7.14,5)
+%    \psline[showpoints=true, dotstyle=pentagon*](-3.14159,0)(0,0)(3.14159,0)(6.283185,0)
+%    \psline[showpoints=true, dotstyle=pentagon*]{->}(0,0)(0,1)(0,2)(0,3)(0,4)(0,5)
+%    %% M->Gamma
+%    \def\EMG{x RadtoDeg cos -2 mul 2.5 add}
+%    \psplot{-3.141592}{0}{\EMG}
 %    \uput[d](-3,0){$M$}
-    %% Gamma -> X
-    \def\Delta{x RadtoDeg cos 1.5 sub neg}
-    \psplot{0}{3.141519}{\Delta}
+%    %% Gamma -> X
+%    \def\Delta{x RadtoDeg cos 1.5 sub neg}
+%    \psplot{0}{3.141519}{\Delta}
 %    \uput[d](0,0){$\Gamma$}
-    %% X -> M
-    \def\EXM{x 3.141519 sub RadtoDeg cos -1 mul 3.5 add}
-    \psplot{3.141519}{6.28318}{\EXM}
+%    %% X -> M
+%    \def\EXM{x 3.141519 sub RadtoDeg cos -1 mul 3.5 add}
+%    \psplot{3.141519}{6.28318}{\EXM}
 %    \uput[d](3.141592,0){$X$}
 %    \uput[d](6.28318,0){$M$}
 %    \rput(2,2){test}
-    
-  \end{pspicture}
-  \caption{Relation de dispertion}
+%    
+  %  \end{pspicture}
+  \includegraphics[width=0.6\textwidth]{./pictures/allure.png}
+  \caption{Relation de dispersion}
   \label{fig:equdedispertion}
 \end{figure}
 
-\Question Nous pouvons maintenant exprimmer l'énergie dans un voisinage de $\Gamma$ grâce à un développement limité:
+\Question Nous pouvons maintenant exprimer l'énergie dans un voisinage de $\Gamma$ grâce à un développement limité:
 \begin{equation}\label{equ:DL}
-\mbox{pour $k$ proche de $(0,0)$}\qquad E(k_x,k_y) = \alpha -4\gamma + 4a^2\gamma \left( {k_x}^2 + {k_y}^2 \right)
+\mbox{pour $\vv{k}$ proche de $(0,0)$}\qquad E(k_x,k_y) = \alpha -4\gamma + 4a^2\gamma \left( {k_x}^2 + {k_y}^2 \right)
 \end{equation}
 
 Cette équation nous permet de définir la forme des lignes iso-énergie en fonction des directions des vecteurs
@@ -248,7 +339,7 @@ Nous avons alors la relation suivante:
   {k_x}^2 + {k_y}^2=\frac{E_1+4\gamma - \alpha}{4a^2\gamma}
 \end{equation}
 Cette relation correspond à l'équation d'un cercle, les lignes d'iso-énergie sont donc des cercles dans le domaines de
-vecteurs d'ondes. L'énergie est donc /isotrope/, ce qui nous permet de simplifier l'équation~\ref{equ:DL} en posant $k$ comme la distance entre le point que l'on considère et le centre de la maille ($k=\sqrt{k_x^2+k_y^2}$):
+vecteurs d'ondes. L'énergie est donc \emph{isotrope}, ce qui nous permet de simplifier l'équation~\ref{equ:DL} en posant $k$ comme la distance entre le point que l'on considère et le centre de la maille ($k^2=k_x^2+k_y^2$):
 \begin{equation}\label{equ:Energie}
   E(k)=\alpha-4\gamma+4a^2\gamma k^2
 \end{equation}
@@ -256,26 +347,28 @@ vecteurs d'ondes. L'énergie est donc /isotrope/, ce qui nous permet de simplifi
 
 \Question À partir de la relation~\ref{equ:Energie}, nous pouvons calculer la masse effective des électrons au voisinage de $\Gamma$.
 \begin{align*}
-  m^* = \frac{\hbar^2}{\frac{\partial^2 E}{\partial k^2}} \\
-    m^* = \frac{\hbar^2}{8a^2\gamma}\\
-    m^* = {\mbox{application numérique}}\\
+  m^* &= \frac{\hbar^2}{\frac{\partial^2 E}{\partial k^2}} \\
+    m^*& = \frac{\hbar^2}{8a^2\gamma}\\
+    m^*& = {\SI{4,82e-32}{\kilogram}}\\
 \end{align*}
+Pour réaliser ce calcul, il faut faire attention à l'unité de $\gamma$, en effet, il est en $\si{\eV}$ , or nous avons réalisé le calcul dans le système international.
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \exercice{Méthode kp}
 
 \Question Nous sommes en présence d'une équation aux valeurs propres qui peut s'écrire sous forme de matrice:
 Nous posons:
 
-\[ \hat{H_{kp}} =  \begin{bmatrix} E_G + \frac{\hbar^2 k^2}{2m_0} & Pk \\ Pk & \frac{\hbar^2 k^2}{2 m_0} \end{bmatrix} \qquad \ket{u_{n,k}} = \begin{bmatrix} C_1 \\ C_2 \end{bmatrix} \]
+\[ \hat{H}_{kp} =  \begin{bmatrix} E_G + \frac{\hbar^2 k^2}{2m_0} & Pk \\ Pk & \frac{\hbar^2 k^2}{2 m_0} \end{bmatrix} \qquad \ket{u_{n,k}} = \begin{bmatrix} C_1 \\ C_2 \end{bmatrix} \]
 
 Nous avons alors l'équation suivante, avec $E$ un scalaire:
 \begin{equation}\label{equ:evp_matrices}
   \hat{H} \ket{u_{n,k}} = E \ket{u_{n,k}} \quad \Leftrightarrow \quad \begin{bmatrix} E_G + \frac{\hbar^2 k^2}{2m_0} & Pk \\ Pk & \frac{\hbar^2 k^2}{2 m_0} \end{bmatrix} \times \begin{bmatrix} C_1 \\ C_2 \end{bmatrix} = E \begin{bmatrix} C_1 \\ C_2 \end{bmatrix}
 \end{equation}
 
-Nous pouvons réécrire cette relation sous la forme $\left(\hat{H}-EI_2\right)\ket{u_{n,k}}=0$, or pour avoir une solution non-dégénérée à cette équation,
-il faut trouver une énergie $E$ telle que l'image de la matrice $\hat{H}-EI_2$ soit de 0, donc il faut en trouver un déterminant nul.
+\Question Nous pouvons réécrire cette relation sous la forme $\left(\hat{H}-EI_2\right)\ket{u_{n,k}}=0$, or pour avoir une solution non-dégénérée à cette équation,
+il faut trouver une énergie $E$ telle que l'image de la matrice $\hat{H}-EI_2$ soit 0, donc il faut en trouver un déterminant nul.
 \begin{equation}\label{equ:determinant}
   \begin{vmatrix} E_G + \frac{\hbar^2 k^2}{2m_0} - E & Pk \\
     Pk & \frac{\hbar^2 k^2}{2 m_0} - E
@@ -283,13 +376,13 @@ il faut trouver une énergie $E$ telle que l'image de la matrice $\hat{H}-EI_2$ 
   \quad \Leftrightarrow E^2-E\left(E_G + 2\left(\frac{\hbar^2 k^2}{2m_0}\right)\right) + \left(\frac{\hbar^2 k^2}{2m_0}\right)^2 + E_G \frac{\hbar^2k^2}{2m_0} - P^2 k^2 = 0
 \end{equation}
 
-Nous calculons dans un premier temps le déterminant de ce plynôme du second degré en $E$, nous posons: $P^2k^2 = E_P \frac{\hbar^2 k^2}{2 m_0}$
+\Question Nous calculons dans un premier temps le déterminant de ce plynôme du second degré en $E$, en posant: $P^2k^2 = E_P \frac{\hbar^2 k^2}{2 m_0}$
 \begin{align*}
   \Delta &= \left( E_G + 2\left(\frac{\hbar^2 k^2}{2m_0}\right)\right)^2 -4\left(\frac{\hbar^2k^2}{2m_0}\right)^2 - 4E_G \frac{\hbar^2 k^2}{2m_0} + 4E_P\frac{\hbar^2 k^2}{2m_0} \\
   \Delta &= E_G^2 +4E_P \frac{\hbar^2 k^2}{2m_0} \\
 \end{align*}
 
-Nous pouvons donc maintenant utiliser l'équation de résolution des polynomes du second degré:
+Nous pouvons donc maintenant exprimer les deux solutions du système~\ref{equ:determinant}:
 \begin{equation}\label{equ:jaioublie}
   E_{c,v} = \frac{E_G}{2} + \frac{\hbar^2 k^2}{2m_0} \pm \frac{1}{2}\sqrt{E_G^2 + E_P \frac{\hbar^2k^2}{2 m_0}}
   \end{equation}
@@ -304,8 +397,8 @@ De plus, l'énergie de plus haut niveau semble correspondre à la bande de condu
 \Question Nous pouvons vérifier la validité de notre hypothèse précédente sur l'identité des bandes par un développement limité.
 Une bande qui présente une courbure positive est une bande de valence là où une bande qui présente une courbure positive est une bande de conduction.
 
-L'objectif premier de notre développement limité est d'éliminer la racine carrée dans les équations~\ref{equ:dispertion1}~et~\ref{equ:dispertion2}. Nous avons donc besoin
-d'hypothèses sur les éléments présents dans cette racine. Nous supposons que $\frac{\hbar^2k^2}{2m_0} \ll \frac{E_G^2}{E_P}$ Donc nous avons $\frac{E_P}{E_G^2}\frac{\hbar^2k^2}{2m_0} \ll 1$ . Nous pouvons alors réaliser l'approximation suivante:
+L'objectif de notre développement limité est d'éliminer la racine carrée dans les équations~\ref{equ:dispertion1}~et~\ref{equ:dispertion2}. Nous avons donc besoin
+d'hypothèses sur les éléments présents dans cette racine. Nous supposons que $\frac{\hbar^2k^2}{2m_0} \ll \frac{E_G^2}{E_P}$ donc, nous avons $\frac{E_P}{E_G^2}\frac{\hbar^2k^2}{2m_0} \ll 1$ . Nous pouvons alors réaliser l'approximation suivante:
 \begin{equation}\label{approximation}
   \sqrt{1+4\frac{E_P}{E_G^2} \frac{\hbar^2 k^2}{2 m_0}} \approx 1 + 2\frac{E_P}{E_G^2} \frac{\hbar^2 k^2}{2 m_0}
 \end{equation}
@@ -352,15 +445,22 @@ si et seulement si $E_P>E_G$. Or on nous donne plus loin $E_P = \SI{16,0}{\eV}$ 
 
 \Question À partir des données du tableau~\ref{tab:donnes}, et en prenant $E_P=\SI{16,0}{\eV}$, nous pouvons calculer les masses effectives de trois semi-conducteurs à gap direct en utilisant la formule~\ref{equ:me}:
 \begin{description} 
-\item{InSb} $m_{e\ InSb}^* = \num{0,0145}\ m_0 = \SI{1,318e-32}{\kilogram}$
-\item{InAs} $m_{e\ InAs}^* = \num{0,0254}\ m_0 = \SI{2,314e-32}{\kilogram}$
-\item{InP} $m_{e\ InP}^* = \num{0,0817}\ m_0 = \SI{7,445e-32}{\kilogram}$
+\item{InSb: } $m_{e\ InSb}^* = \num{0,0145}\ m_0 = \SI{1,318e-32}{\kilogram}$
+\item{InAs: } $m_{e\ InAs}^* = \num{0,0254}\ m_0 = \SI{2,314e-32}{\kilogram}$
+\item{InP: } $m_{e\ InP}^* = \num{0,0817}\ m_0 = \SI{7,445e-32}{\kilogram}$
 \end{description}
 
 Le tableau~\ref{tab:donnes} ne nous permet pas de comparer nos résultats avec des mesures expérimentales.
 
 
-\Question SCHEMA
+\Question cf figure~\ref{fig:allureED}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=7cm]{./pictures/bandes.png}
+  \caption{Allure de la relation de dispertion en $\Gamma$ pour un semi-conducteur à gap direct}
+  \label{fig:allureED}
+\end{figure}
+
 
 
 
